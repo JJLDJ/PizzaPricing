@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Pizza Pricing</string>
+    <string name="edit_pizza_size">Enter a pizza size</string>
+    <string name="button_add_pizza">Add Pizza</string>
+    <string name="button_new_pizza">New Pizza</string>
+    <string name="title_activity_pizza_list">PizzaListActivity</string>
+</resources>

@@ -1,0 +1,60 @@
+package com.pizzapricing;
+
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+public class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.ViewHolder> {
+    private ArrayList<String> mDataset = new ArrayList<>();
+
+    // Provide a reference to the views for each data item
+    // Complex data items may need more than one view per item, and
+    // you provide access to all the views for a data item in a view holder
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        protected TextView pizzaSizeTextView;
+
+        public ViewHolder(View v) {
+            super(v);
+            this.pizzaSizeTextView = (TextView) v.findViewById(R.id.pizza_list_size);
+        }
+    }
+
+    // Provide a suitable constructor (depends on the kind of dataset)
+    public PizzaListAdapter() {
+    }
+
+    // Create new views (invoked by the layout manager)
+    @Override
+    public PizzaListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                   int viewType) {
+        // create a new view, inferred from some layout object
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.pizza_list_item, parent, false);
+        // set the view's size, margins, paddings and layout parameters
+
+        return new ViewHolder(v);
+    }
+
+    // Replace the contents of a view (invoked by the layout manager)
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        // - get element from your dataset at this position
+        // - replace the contents of the view with that element
+        holder.pizzaSizeTextView.setText(mDataset.get(position));
+    }
+
+    // Return the size of your dataset (invoked by the layout manager)
+    @Override
+    public int getItemCount() {
+        return mDataset.size();
+    }
+
+    public void addPizza(double pizzaSize) {
+        mDataset.add(String.format("Pizza Size = %.2f", pizzaSize));
+    }
+}
