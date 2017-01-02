@@ -9,7 +9,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.ViewHolder> {
-    private ArrayList<String> mDataset = new ArrayList<>();
+    private ArrayList<String> pizzaList = new ArrayList<>();
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -40,21 +40,21 @@ public class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.View
         return new ViewHolder(v);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+    // Replace the contents of a view (invoked by the layout manager).
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.pizzaSizeTextView.setText(mDataset.get(position));
+        holder.pizzaSizeTextView.setText(pizzaList.get(position));
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
+    // Return the size of your dataset (invoked by the layout manager).
     @Override
     public int getItemCount() {
-        return mDataset.size();
+        return pizzaList.size();
     }
 
     public void addPizza(double pizzaSize) {
-        mDataset.add(String.format("Pizza Size = %.2f", pizzaSize));
+        pizzaList.add(String.format("%.2f", pizzaSize));
     }
 }

@@ -2,13 +2,12 @@ package com.pizzapricing;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import static com.pizzapricing.AddPizzaActivity.PIZZA_SIZE;
 
@@ -16,27 +15,25 @@ public class PizzaListActivity extends AppCompatActivity {
 
     public static final int ADD_PIZZA_INTENT_ID = 1;
 
-    private RecyclerView mRecyclerView;
-    private PizzaListAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView recyclerView;
+    private PizzaListAdapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pizza_list);
 
+        recyclerView = (RecyclerView) findViewById(R.id.pizza_list_recycler_view);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.pizza_list_recycler_view);
+        // This setting improves performance when RecyclerView layout size won't change.
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
-        // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        // specify an adapter (see also next example)
-        mAdapter = new PizzaListAdapter();
-        mRecyclerView.setAdapter(mAdapter);
+        // Create the adapter that will store the data behind our recycler (list) view.
+        adapter = new PizzaListAdapter();
+        recyclerView.setAdapter(adapter);
     }
 
     /** Called when the user wants to add a new pizza. */
@@ -51,22 +48,21 @@ public class PizzaListActivity extends AppCompatActivity {
         if (requestCode == ADD_PIZZA_INTENT_ID) {
             if(resultCode == Activity.RESULT_OK){
                 Double pizzaSize = data.getDoubleExtra(PIZZA_SIZE, 100.0);
-
-                TextView textView = new TextView(this);
-                textView.setTextSize(40);
-                textView.setText(String.format("Pizza Size = %.2f", pizzaSize));
-
-                ViewGroup layout = (ViewGroup) findViewById(R.id.activity_pizza_list);
-                layout.addView(textView);
+                adapter.addPizza(pizzaSize);
+                adapter.notifyDataSetChanged();
+                showNotification("Added Pizza");
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                showNotification("Cancelled Adding Pizza");
             }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                TextView textView = new TextView(this);
-                textView.setTextSize(40);
-                textView.setText(String.format("Cancel"));
-
-                ViewGroup layout = (ViewGroup) findViewById(R.id.activity_pizza_list);
-                layout.addView(textView);
-            }
+        } else {
+            showNotification("Unexpected Result");
         }
+    }
+
+    private void showNotification(String notificationText) {
+        Snackbar.make(findViewById(R.id.pizza_list_coordinator_layout), notificationText,
+                Snackbar.LENGTH_SHORT)
+                .show();
+
     }
 }
