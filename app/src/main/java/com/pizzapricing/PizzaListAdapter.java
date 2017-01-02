@@ -32,11 +32,9 @@ public class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.View
     @Override
     public PizzaListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
-        // create a new view, inferred from some layout object
+        // Create a new view, using the pizza_list_item.xml layout object as a template.
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.pizza_list_item, parent, false);
-        // set the view's size, margins, paddings and layout parameters
-
         return new ViewHolder(v);
     }
 

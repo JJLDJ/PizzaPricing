@@ -5,4 +5,5 @@
     <string name="button_new_pizza">New Pizza</string>
     <string name="title_activity_pizza_list">PizzaListActivity</string>
     <string name="label_pizza_diameter">Pizza Diameter</string>
+    <string name="label_pizza_area">Pizza Area</string>
 </resources>

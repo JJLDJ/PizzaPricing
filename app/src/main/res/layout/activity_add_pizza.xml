@@ -3,20 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.pizzapricing.AddPizzaActivity">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello Pizza Lovers!" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Again" />
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal" >
+    android:orientation="horizontal">
+
         <EditText android:id="@+id/edit_pizza_size"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -27,5 +15,4 @@
             android:layout_height="wrap_content"
             android:text="@string/button_add_pizza"
             android:onClick="addPizza"/>
-</LinearLayout>
 </LinearLayout>
