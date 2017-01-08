@@ -8,13 +8,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.ViewHolder> {
+final class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.ViewHolder> {
     private ArrayList<Pizza> pizzaList = new ArrayList<>();
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         protected TextView pizzaDiameterTextView;
         protected TextView pizzaAreaTextView;
@@ -26,8 +26,8 @@ public class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.View
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
-    public PizzaListAdapter() {
+    // Empty constructor since all we need to do is initialize the list.
+    PizzaListAdapter() {
     }
 
     // Create new views (invoked by the layout manager)
