@@ -9,18 +9,20 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.ViewHolder> {
-    private ArrayList<String> pizzaList = new ArrayList<>();
+    private ArrayList<Pizza> pizzaList = new ArrayList<>();
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView pizzaSizeTextView;
+        protected TextView pizzaDiameterTextView;
+        protected TextView pizzaAreaTextView;
 
         public ViewHolder(View v) {
             super(v);
-            this.pizzaSizeTextView = (TextView) v.findViewById(R.id.pizza_list_size);
+            this.pizzaDiameterTextView = (TextView) v.findViewById(R.id.pizza_list_diameter);
+            this.pizzaAreaTextView = (TextView) v.findViewById(R.id.pizza_list_area);
         }
     }
 
@@ -43,7 +45,10 @@ public class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.View
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.pizzaSizeTextView.setText(pizzaList.get(position));
+
+        Pizza pizza = pizzaList.get(position);
+        holder.pizzaDiameterTextView.setText(String.format("%.2f", pizza.getDiameter()));
+        holder.pizzaAreaTextView.setText(String.format("%.2f", pizza.getArea()));
     }
 
     // Return the size of your dataset (invoked by the layout manager).
@@ -52,7 +57,7 @@ public class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.View
         return pizzaList.size();
     }
 
-    public void addPizza(double pizzaSize) {
-        pizzaList.add(String.format("%.2f", pizzaSize));
+    public void addPizza(Pizza pizza) {
+        pizzaList.add(pizza);
     }
 }

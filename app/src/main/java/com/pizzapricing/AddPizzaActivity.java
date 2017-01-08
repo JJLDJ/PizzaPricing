@@ -25,8 +25,8 @@ public class AddPizzaActivity extends AppCompatActivity {
         // Make a sort-of pop up for the user...
         Intent intent = new Intent(this, PizzaListActivity.class);
         EditText editText = (EditText) findViewById(R.id.edit_pizza_size);
-        double pizzaSize = Double.parseDouble(editText.getText().toString());
-        intent.putExtra(PIZZA_SIZE, pizzaSize);
+        double pizzaDiameter = Double.parseDouble(editText.getText().toString());
+        intent.putExtra(PIZZA_SIZE, pizzaDiameter);
 
         // Send data back to the parent call.
         setResult(Activity.RESULT_OK, intent);

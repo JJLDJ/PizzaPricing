@@ -47,8 +47,9 @@ public class PizzaListActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == ADD_PIZZA_INTENT_ID) {
             if(resultCode == Activity.RESULT_OK){
-                Double pizzaSize = data.getDoubleExtra(PIZZA_SIZE, 100.0);
-                adapter.addPizza(pizzaSize);
+                double pizzaSize = data.getDoubleExtra(PIZZA_SIZE, 100.0);
+                Pizza newPizza = new Pizza(pizzaSize);
+                adapter.addPizza(newPizza);
                 adapter.notifyDataSetChanged();
                 showNotification("Added Pizza");
             } else if (resultCode == Activity.RESULT_CANCELED) {
