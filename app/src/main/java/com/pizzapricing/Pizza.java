@@ -4,7 +4,7 @@ package com.pizzapricing;
  * Represents a single pizza. Currently assumes that all pizzas are round.
  */
 final class Pizza {
-    private double pizzaDiameter;
+    private final double pizzaDiameter;
 
     /** Creates a new pizza with the specified diameter. */
     Pizza(double pizzaDiameter) {
@@ -18,7 +18,6 @@ final class Pizza {
 
     /** Returns the total surface area of the pizza. */
     double getArea() {
-        // TODO: Implement this.
-        return 0.0;
+        return Math.pow(pizzaDiameter/2,2)*3.1416;
     }
 }
