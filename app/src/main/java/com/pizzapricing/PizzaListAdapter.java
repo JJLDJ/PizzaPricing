@@ -11,9 +11,10 @@ import java.util.ArrayList;
 final class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.ViewHolder> {
     private ArrayList<Pizza> pizzaList = new ArrayList<>();
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
+    /**
+     * View holder that holds references to all the views needed to represent a single pizza/entry
+     * in the pizza list.
+     */
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         protected TextView pizzaDiameterTextView;
