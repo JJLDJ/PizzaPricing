@@ -20,10 +20,10 @@ final class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.ViewH
         protected TextView pizzaDiameterTextView;
         protected TextView pizzaAreaTextView;
 
-        public ViewHolder(View v) {
-            super(v);
-            this.pizzaDiameterTextView = (TextView) v.findViewById(R.id.pizza_list_diameter);
-            this.pizzaAreaTextView = (TextView) v.findViewById(R.id.pizza_list_area);
+        public ViewHolder(View pizzaListItemView) {
+            super(pizzaListItemView);
+            this.pizzaDiameterTextView = (TextView) pizzaListItemView.findViewById(R.id.pizza_list_diameter);
+            this.pizzaAreaTextView = (TextView) pizzaListItemView.findViewById(R.id.pizza_list_area);
         }
     }
 
@@ -60,5 +60,11 @@ final class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.ViewH
 
     public void addPizza(Pizza pizza) {
         pizzaList.add(pizza);
+    }
+
+    /** Removes the pizza at index {@code pizzaIndex} from this adapter's list. */
+    public void removePizza(int pizzaIndex) {
+        pizzaList.remove(pizzaIndex);
+
     }
 }
