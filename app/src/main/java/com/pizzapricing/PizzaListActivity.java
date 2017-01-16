@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
 import static com.pizzapricing.AddPizzaActivity.PIZZA_SIZE;
@@ -34,6 +35,23 @@ public class PizzaListActivity extends AppCompatActivity {
         // Create the adapter that will store the data behind our recycler (list) view.
         adapter = new PizzaListAdapter();
         recyclerView.setAdapter(adapter);
+
+        // Create the callback that will handle swipe actions on the list.
+        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                int swipedPizzaIndex = viewHolder.getAdapterPosition();
+                adapter.removePizza(swipedPizzaIndex);
+                adapter.notifyDataSetChanged();
+            }
+        };
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     /** Called when the user wants to add a new pizza. */
