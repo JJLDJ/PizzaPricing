@@ -8,4 +8,7 @@
     <string name="label_pizza_area">Pizza Area</string>
     <string name="label_pizza_cost">Pizza Cost</string>
     <string name="edit_pizza_price">Enter a pizza price</string>
+    <string name="per_square_inch">Per Sqaure Inch</string>
+    <string name="square_inches">Square Inches</string>
+    <string name="inches">Inches</string>
 </resources>
