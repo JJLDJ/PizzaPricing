@@ -11,6 +11,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
 import static com.pizzapricing.AddPizzaActivity.PIZZA_SIZE;
+import static com.pizzapricing.AddPizzaActivity.PIZZA_PRICE;
 
 public class PizzaListActivity extends AppCompatActivity {
 
@@ -66,7 +67,8 @@ public class PizzaListActivity extends AppCompatActivity {
         if (requestCode == ADD_PIZZA_INTENT_ID) {
             if(resultCode == Activity.RESULT_OK){
                 double pizzaSize = data.getDoubleExtra(PIZZA_SIZE, 100.0);
-                Pizza newPizza = new Pizza(pizzaSize);
+                double pizzaPrice = data.getDoubleExtra(PIZZA_PRICE, 100.0);
+                Pizza newPizza = new Pizza(pizzaSize, pizzaPrice);
                 adapter.addPizza(newPizza);
                 adapter.notifyDataSetChanged();
                 showNotification("Added Pizza");

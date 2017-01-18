@@ -19,11 +19,13 @@ final class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.ViewH
 
         protected TextView pizzaDiameterTextView;
         protected TextView pizzaAreaTextView;
+        protected TextView pizzaCostTextView;
 
         public ViewHolder(View pizzaListItemView) {
             super(pizzaListItemView);
             this.pizzaDiameterTextView = (TextView) pizzaListItemView.findViewById(R.id.pizza_list_diameter);
             this.pizzaAreaTextView = (TextView) pizzaListItemView.findViewById(R.id.pizza_list_area);
+            this.pizzaCostTextView = (TextView) pizzaListItemView.findViewById(R.id.pizza_list_cost);
         }
     }
 
@@ -50,6 +52,7 @@ final class PizzaListAdapter extends RecyclerView.Adapter<PizzaListAdapter.ViewH
         Pizza pizza = pizzaList.get(position);
         holder.pizzaDiameterTextView.setText(String.format("%.2f", pizza.getDiameter()));
         holder.pizzaAreaTextView.setText(String.format("%.2f", pizza.getArea()));
+        holder.pizzaCostTextView.setText(String.format("%.2f", pizza.getCost()));
     }
 
     // Return the size of your dataset (invoked by the layout manager).
